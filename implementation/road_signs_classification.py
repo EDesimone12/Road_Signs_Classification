@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 
 tf.random.set_seed(100)
 
-path='resources/annotations'
+path='../resources/annotations/'
 content=[]
 speedcounter = 0
 
