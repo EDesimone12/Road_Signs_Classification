@@ -17,15 +17,16 @@ from sklearn.model_selection import train_test_split
 
 tf.random.set_seed(100)
 
-path='../resources/annotations/'
+path="..\\resources\\annotations"
 content=[]
 speedcounter = 0
+
 
 for filename in os.listdir(path):
 
     if not filename.endswith('.xml'): continue
     finalpath = os.path.join(path, filename)
-    print(finalpath)
+
 
     infile = open(finalpath, "r")
 
@@ -77,7 +78,7 @@ i=0
 
 for a in data.path_name.values:
 
-    image = Image.open("/content/drive/MyDrive/FIA_Segnali_Stradali/"+a).convert("RGB")
+    image = Image.open("..\\resources\\"+a).convert("RGB")
 
     #Image resizing is needed to upgrade the resolution
     image=image.resize((224,224),Image.ANTIALIAS)
@@ -98,7 +99,7 @@ print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
 
 #Layer definition
 model = Sequential()
-model.add(Conv2D(128, kernel_size=(3,3), activation='relu', input_shape=X_train.shape[1:]))
+model.add(Conv2D(128, kernel_size=(3 ,3), activation='relu', input_shape=X_train.shape[1:]))
 model.add(MaxPool2D(pool_size=(2, 2)))
 model.add(Dropout(rate=0.25))
 model.add(Flatten())
