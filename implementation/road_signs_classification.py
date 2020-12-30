@@ -121,6 +121,55 @@ with open("model.json", "w") as json_file:
 model.save_weights("model.h5")
 print("Saved model to drive")
 
+# ***************************************************************************
+# We have tested the trained model.                                         *
+# In this code the Neural Network can classified the road sign we submit.   *
+# This will be available in the demo.                                       *
+# ***************************************************************************
+
+# ** load json and create model **
+#json_file = open('model.json', 'r')
+#loaded_model_json = json_file.read()
+#json_file.close()
+#loaded_model = model_from_json(loaded_model_json)
+# ** load weights into new model **
+#loaded_model.load_weights("model.h5")
+#print("Loaded model from disk")
+#
+# ** load images **
+#path = "/content/drive/MyDrive/FIA_SegnaliStradali/toPredict/predict"
+#
+#print("Insert a class to detect between: \n crosswalk \n limit \n stop \n trafficlight")
+#inputX = input()
+#path = path + inputX +".png"
+#
+#immagine = Image.open(path).convert("RGB")
+#
+# ** Image formatting **
+#img=immagine.resize((224,224),Image.ANTIALIAS)
+#img=np.reshape(img,[224,224,3])
+#
+#plt.imshow(img)
+#plt.show()
+#
+# ** predict **
+#img_array = image.img_to_array(img)
+#img_batch = np.expand_dims(img_array, axis=0)
+#
+#img_preprocessed = preprocess_input(img_batch)
+#
+#prediction = loaded_model.predict(img_preprocessed)
+#print(prediction)
+#
+# ** Generate arg maxes for predictions **
+#classes = np.argmax(prediction, axis = 1)
+#print("trafficlight(0), speedlimit(1), crosswalk(2), stop(3)")
+#print(classes)
+
+# *******************************************************************************************
+# Here ends the demo.                                                                       *
+# *******************************************************************************************
+
 plt.plot(history.history['acc'])
 plt.plot(history.history['val_acc'])
 plt.title('Model accuracy')
