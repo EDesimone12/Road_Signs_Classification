@@ -93,14 +93,13 @@ Y = c[:, 1:]
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=787)
 print(X_train.shape, X_test.shape, y_train.shape, y_test.shape)
 
-# Layer definition
+# Layers definition
 model = Sequential()
-model.add(Conv2D(128, kernel_size=(3, 3), activation='relu', input_shape=X_train.shape[1:]))
+model.add(Conv2D(128, kernel_size=(3 ,3), activation='relu', input_shape=X_train.shape[1:]))
 model.add(MaxPool2D(pool_size=(2, 2)))
-model.add(Dropout(rate=0.25))
 model.add(Flatten())
 model.add(Dense(128, activation='relu'))
-model.add(Dropout(rate=0.50))
+model.add(Dropout(rate=0.25))
 model.add(Dense(4, activation='softmax'))
 
 # Compilation of the model
@@ -108,18 +107,11 @@ model.add(Dense(4, activation='softmax'))
 # Optimizer Adaptive Moment lr=0.001
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 
-history = model.fit(X_train, y_train, batch_size=8, epochs=50, validation_data=(X_test, y_test))
+history = model.fit(X_train, y_train, batch_size=64, epochs=50, validation_data=(X_test, y_test))
 
 # Evaluating
-results = model.evaluate(X_test, y_test, batch_size=8)
+results = model.evaluate(X_test, y_test, batch_size=64)
 
-#Saving final model
-model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-# serialize weights to HDF5
-model.save_weights("model.h5")
-print("Saved model to drive")
 
 # ***************************************************************************
 # We have tested the trained model.                                         *
@@ -127,15 +119,14 @@ print("Saved model to drive")
 # This will be available in the demo.                                       *
 # ***************************************************************************
 
-# ** load json and create model **
-#json_file = open('model.json', 'r')
-#loaded_model_json = json_file.read()
-#json_file.close()
-#loaded_model = model_from_json(loaded_model_json)
-# ** load weights into new model **
-#loaded_model.load_weights("model.h5")
-#print("Loaded model from disk")
-#
+# Saving final model
+# model.save("/content/drive/MyDrive/FIA_DEMO_/finalModel")
+# print("Saved model to drive")
+
+
+# ** load model **
+#loaded_model_json =  keras.models.load_model("/content/drive/MyDrive/FIA_DEMO_/finalModel")
+
 # ** load images **
 #path = "/content/drive/MyDrive/FIA_SegnaliStradali/toPredict/predict"
 #
